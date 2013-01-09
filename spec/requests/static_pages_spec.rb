@@ -1,0 +1,55 @@
+require 'spec_helper'
+
+describe "StaticPages" do
+
+  describe "the home page" do
+    it "should have the correct title and content" do
+      visit root_path
+      page.should have_selector('title', text: "working title - KBREPO")
+      page.should have_content("misissipi")
+    end    
+    
+    it "should have the correct links" do
+      visit root_path
+      page.should have_selector('a', text: "help")
+      page.should have_selector('a', text: "home")
+      page.should have_selector('a', text: "about")
+      
+      click_on('help')
+      page.should have_content("the help page")
+    end
+  end
+
+  describe "the help page" do
+    it "should have the correct title and content" do
+      visit help_path
+      page.should have_selector('title', text: "working title - KBREPO")
+      page.should have_content("the help page")
+    end    
+    
+    it "should have the correct links" do
+      visit help_path
+      page.should have_selector('a', text: "help")
+      page.should have_selector('a', text: "home")
+      page.should have_selector('a', text: "about")
+
+    end
+  end
+
+  describe "the about page" do
+    it "should have the correct title and content" do
+      visit about_path
+      page.should have_selector('title', text: "working title - KBREPO")
+      page.should have_content("the about page")
+    end    
+    
+    it "should have the correct links" do
+      visit about_path
+      page.should have_selector('a', text: "help")
+      page.should have_selector('a', text: "home")
+      page.should have_selector('a', text: "about")
+
+    end
+  end
+
+end
